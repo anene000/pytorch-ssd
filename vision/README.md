@@ -114,7 +114,7 @@ The code to re-produce the model:
 
 ```bash
 wget -P models https://storage.googleapis.com/models-hao/mb2-imagenet-71_8.pth
-python train_ssd.py --dataset_type voc  --datasets ~/data/VOC0712/VOC2007 ~/data/VOC0712/VOC2012 --validation_dataset ~/data/VOC0712/test/VOC2007/ --net mb2-ssd-lite --base_net models/mb2-imagenet-71_8.pth  --scheduler cosine --lr 0.01 --t_max 200 --validation_epochs 5 --num_epochs 20
+python train_ssd.py --dataset_type voc  --datasets ~/data/VOC0712/VOC2007 ~/data/VOC0712/VOC2012 --validation_dataset ~/data/VOC0712/test/VOC2007/ --net mb2-ssd-lite --base_net models/mb2-imagenet-71_8.pth  --scheduler cosine --lr 0.01 --t_max 200 --validation_epochs 5 --num_epochs 200
 ```
 
 ### VGG SSD
@@ -167,7 +167,7 @@ The dataset path is the parent directory of the folders: Annotations, ImageSets,
 ## Evaluation
 
 ```bash
-python eval_ssd.py --net mb1-ssd  --dataset ~/data/VOC0712/test/VOC2007/ --trained_model mobilenet-v1-ssd models/mobilenet-v1-ssd-mp-0_675.pth --label_file models/voc-model-labels.txt 
+python eval_ssd.py --net mb1-ssd  --dataset ~/data/VOC0712/test/VOC2007/ --trained_model models/mobilenet-v1-ssd-mp-0_675.pth --label_file models/voc-model-labels.txt 
 ```
 
 ## Convert models to ONNX and Caffe2 models
