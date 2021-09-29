@@ -47,6 +47,8 @@ else:
     predictor = create_vgg_ssd_predictor(net, candidate_size=200)
 
 orig_image = cv2.imread(image_path)
+h,w = orig_image.shape[:2]
+orig_image = cv2.resize(orig_image,(int(w)*2,int(h)*2))
 image = cv2.cvtColor(orig_image, cv2.COLOR_BGR2RGB)
 boxes, labels, probs = predictor.predict(image, 10, 0.4)
 
@@ -62,5 +64,7 @@ for i in range(boxes.size(0)):
                 (255, 0, 255),
                 2)  # line type
 path = "run_ssd_example_output.jpg"
+cv2.imshow('A',orig_image)
+cv2.waitKey(0)
 cv2.imwrite(path, orig_image)
 print(f"Found {len(probs)} objects. The output image is {path}")
